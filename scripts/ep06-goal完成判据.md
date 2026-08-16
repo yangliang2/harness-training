@@ -82,11 +82,11 @@
 
 **主 demo（实录，0:50–1:20 机制揭秘段）**
 
-1. 准备一个含已知失败测试的示例 repo（模板仓库 `ep06/demo/`：⚠️ 待建——当前 ep06/ 仅有 checklist 与 check 脚本，demo 夹具需按本步骤搭建：`npm test` 初始为红，`migrations/` 目录为空）。
+1. 布景用 `spike/ep06-goal`（2026-08-16 决策：不另建 `template-repo/ep06/demo/` 夹具，统一用手册口径的真实仓库）：`src/score.js` 的 `grade()`（A/B/C/D 四档）+ `npm test`（node:test），初始全绿、无边界分测试。拍前 `git checkout -q -- . && git clean -fdq` 重置。
 2. 终端启动 Claude Code（v2.1.139+），输入 `/goal`。
-3. 设定判据："`npm test` 全部通过，且 `migrations/` 中存在编号大于 0042 的迁移文件"。
+3. 设定判据："`npm test` 全部通过，且 `tests/` 中存在 `score.boundary.test.js`，对 59/60/89/90 四个边界分的断言全部通过"——初始状态缺测试文件，判据不成立。
 4. 展示 /goal 注册的 Stop hook 配置（session 级），与第五期手写 settings.json 并排。
-5. 预期结果：agent 每轮尝试结束时被 Stop 判定拦回，直到测试真绿、迁移文件真存在才停。
+5. 预期结果：agent 每轮尝试结束时被 Stop 判定拦回，直到边界测试真写好、真跑绿才停。
 
 **B 方案（录不到时）**：/goal 语法处于快速迭代期（二审遗留事项：开拍当月以官方文档复核）。若现场行为异常，改用文档截图 + 旁白讲机制，演示段换成模板仓库里预录的 transcript 逐行讲解。
 
@@ -165,4 +165,4 @@ Cursor 没有 /goal，对应位置是它 1.7 就有的 stop hook：agent 想停�
 | 交接三件套：JSON feature list + progress 文件 + git history | Anthropic《Effective harnesses for long-running agents》（§4.1） | ✅ 一手 |
 | Goodhart"指标变目标即失效"在本期作为失效模式引入 | 大纲第六期（为期 8 埋引线；古德哈特相关分析框架属本课提出的视角，第八期如实标注） | ✅ 课程框架 |
 | 松判据 / 死判据失效样本 | 自录策展样本（2026-08-07 一落实测，`spike/captures/ep06-loose.stream.jsonl` / `spike/captures/ep06-impossible.stream.jsonl`，回放 `spike/captures/evidence/ep06-loose.cast` / `ep06-impossible.cast`） | ✅ 已实跑取材，数字可用：松判据"让这个项目看起来完善了"→ 跑了 25 轮 / 6.5 分钟 / $0.41 才停——失效形态是**镀金蔓延**（主动重构、加测试、加 LICENSE，全没人要求），不是秒退；死判据"证明没有任何 bug，有百分之百把握才算完成"→ 7 分钟 27 轮仍在烧，超时强杀未收尾。口播与画面卡已按实测数字改写（1:20–2:05 段） |
-| 2026-08-16 诚实性复审修复记录 | 本次复审（对照 `spike/captures/evidence/MANIFEST.md` ep06 节与 stream.jsonl 实测：松判据 result 记录 num_turns=25 / 385.6 秒 / $0.4076；死判据 27 个 assistant 轮次 / 15:46:41–15:53:29 UTC / 无 result 记录=被强杀） | ✅ 已修复：① 实测日期 2026-08-06 → 2026-08-07（以 stream.jsonl 时间戳为准）；② 证据路径改为实际扁平路径（原写成 `ep06-loose/ep06-impossible.stream.jsonl` 子目录式，不存在）；③ 删除"选自十余次运行的典型样本"（无任何多次采样证据，改为如实标注"单次实测样本，策展呈现"）；④ 全稿【画面】段补三分法标注，开场"录屏"降级为可生成情景示意卡（无对应实拍素材）；⑤ 标注 `ep06/demo/` 夹具待建（template-repo/ep06/ 当前仅有 checklist 与 check 脚本） |
+| 2026-08-16 诚实性复审修复记录 | 本次复审（对照 `spike/captures/evidence/MANIFEST.md` ep06 节与 stream.jsonl 实测：松判据 result 记录 num_turns=25 / 385.6 秒 / $0.4076；死判据 27 个 assistant 轮次 / 15:46:41–15:53:29 UTC / 无 result 记录=被强杀） | ✅ 已修复：① 实测日期 2026-08-06 → 2026-08-07（以 stream.jsonl 时间戳为准）；② 证据路径改为实际扁平路径（原写成 `ep06-loose/ep06-impossible.stream.jsonl` 子目录式，不存在）；③ 删除"选自十余次运行的典型样本"（无任何多次采样证据，改为如实标注"单次实测样本，策展呈现"）；④ 全稿【画面】段补三分法标注，开场"录屏"降级为可生成情景示意卡（无对应实拍素材）；⑤ `ep06/demo/` 夹具不再待建——2026-08-16 决策改用手册口径的真实仓库 `spike/ep06-goal`，demo 判据改写为 score.boundary.test.js 边界分版本 |

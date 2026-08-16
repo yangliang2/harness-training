@@ -1,7 +1,7 @@
 # 第 7 期：元层——Evals 与 Build to Delete
 
 > 时长 5 分钟 | 交付物：promptfoo 配置 + harness 审计清单 | 前置：第 2 期（模板仓库冒烟配置）、第 3 期（PreToolUse hook）、第 5 期（Stop hook）
-> 格式说明：本期演示为 promptfoo 全量实跑（工具行为确定性，agent 输出概率性），终版口径为 2026-08-07 实跑存档 6/6 全绿（regression 2/2 + capability 4/4，`spike/captures/evidence/ep07/ep07-eval-results.json`）；换模型对比段因拍摄环境只有单模型不实拍，用预跑存档（无存档则剪掉）；作业为 check-homework.sh 外部判据脚本。
+> 格式说明：本期演示为 promptfoo 全量实跑（工具行为确定性，agent 输出概率性），终版口径为 2026-08-07 实跑存档 6/6 全绿（regression 2/2 + capability 4/4，`spike/captures/evidence/ep07/ep07-eval-results.json`）；换模型对比段已整段删除（2026-08-16 决策：上一代模型重跑存档不存在，口播与画面均移除）；作业为 check-homework.sh 外部判据脚本。
 > 画面素材三分法（每个【画面】段逐项标注）：【实拍】= 终端真跑，禁止生成替代；【真截】= 真实网页/文档截图，禁止生成替代（假截图违反本课证据纪律）；【可生成】= 制作卡（card2png 管线或 AI 生成均可，卡上数据/引语必须真实可核）。
 
 ## 逐字稿
@@ -27,10 +27,10 @@
 
 成本参照：社区有人给 184 个 agent prompt 跑 eval，一次约五美分，首轮就发现真实质量缺口。你这点量，成本忽略。
 
-到这儿，体检只证明了今天没病——它真正派用场，是你要动大改动的时候。比如换模型：把配置里的模型换成上一代，重跑。爬坡组掉了，回归组依然全绿。这就是换模型时你最想要的画面：哪塌了、哪没塌。
+到这儿，体检只证明了今天没病——它真正派用场，是你要动大改动的时候：改 hook、删规则、换模型，重跑一遍，哪塌了、哪没塌，一目了然。
 
 【画面】
-录屏【实拍】：打开 `promptfooconfig.yaml`，逐段高亮 providers / tests 两组用例，高亮处弹字幕卡【可生成】（观众自读，不占口播）：providers = `anthropic:claude-agent-sdk`，谁来跑；tests = 考什么题，分两组。终端跑 `npx promptfoo eval`【实拍，等待段叠"已剪辑"字幕；现场结果与存档不一致时改用预跑存档 + `promptfoo view` 打开，画面配字幕"取自预跑结果存档"】；`promptfoo view` 的结果表格【实拍，数据逐字来自实跑存档 `evidence/ep07/ep07-eval-results.json`：回归组 2/2 PASS、爬坡组 4/4 PASS】；然后编辑 model 字段重跑、两张表格并排对比【实拍（预跑存档）——截至 2026-08-16 复审：上一代模型存档不存在，开拍前须预跑并存入 `evidence/ep07/`，否则按 2026-08-07 决策剪掉此段】。角落字幕卡【可生成】："测的是系统（harness），不是模型"。
+录屏【实拍】：打开 `promptfooconfig.yaml`，逐段高亮 providers / tests 两组用例，高亮处弹字幕卡【可生成】（观众自读，不占口播）：providers = `anthropic:claude-agent-sdk`，谁来跑；tests = 考什么题，分两组。终端跑 `npx promptfoo eval`【实拍，等待段叠"已剪辑"字幕；现场结果与存档不一致时改用预跑存档 + `promptfoo view` 打开，画面配字幕"取自预跑结果存档"】；`promptfoo view` 的结果表格【实拍，数据逐字来自实跑存档 `evidence/ep07/ep07-eval-results.json`：回归组 2/2 PASS、爬坡组 4/4 PASS】。角落字幕卡【可生成】："测的是系统（harness），不是模型"。（2026-08-16 决策：换模型并排对比段整段删除——上一代模型重跑存档不存在，口播与画面均不再出现。）
 
 ### 2:50–3:55 原理：两类 eval，一个判断
 
@@ -76,9 +76,9 @@ evals 还有第二个用途：给删除发许可证。你的每个 hook、每条
 
 1. **展示配置**：打开 `promptfooconfig.yaml`，指出 `providers: [anthropic:claude-agent-sdk]`、两组 tests（regression / capability）。
 2. **跑全量**：`npx promptfoo eval`。
-   - 预期：regression 组 2/2 通过（用例 A：任务"在 generated/api.ts 末尾追加一行导出"→ transcript 含 hook 拦截消息且文件未变；用例 B：agent 提前宣布完成 → Stop hook 阻塞并塞回验证输出）；capability 组 4/4 通过——以 2026-08-07 实跑存档 `evidence/ep07/ep07-eval-results.json` 为准：6/6 全绿，故意安排的两个较难任务也全过。"爬坡"形态靠换模型对比或后续新题呈现，不伪造失败。
+   - 预期：regression 组 2/2 通过（用例 A：任务"在 generated/api.ts 末尾追加一行导出"→ transcript 含 hook 拦截消息且文件未变；用例 B：agent 提前宣布完成 → Stop hook 阻塞并塞回验证输出）；capability 组 4/4 通过——以 2026-08-07 实跑存档 `evidence/ep07/ep07-eval-results.json` 为准：6/6 全绿，故意安排的两个较难任务也全过。"爬坡"形态靠后续新题呈现，不伪造失败。
 3. **查看结果**：`npx promptfoo view`，镜头停在结果表格。
-4. **换模型重跑**：把 config 中 model 字段改为上一代模型，`npx promptfoo eval` 重跑；预期 regression 仍全绿，capability 通过率下降——形成对比截图。**（2026-08-07 决策：本拍摄环境 relay 只有单一模型 k3[1m]，对比镜头不实拍；用预跑存档方案——有多模型环境时预跑一次存档 `results.json`，画面配字幕"取自预跑结果存档"；没有则剪掉此段，2:50–3:55 原理段的 days vs weeks 论述不受影响。2026-08-16 复审补充：`evidence/ep07/` 目前只有单模型一次实跑存档，上一代模型存档尚不存在——开拍前必须预跑并存档，否则此段剪掉。）**
+4. **换模型重跑段**：~~把 config 中 model 字段改为上一代模型重跑对比~~ **（2026-08-16 决策：整段删除——上一代模型重跑存档不存在，本拍摄环境 relay 只有单一模型 k3[1m]；口播与画面均已移除该段，2:50–3:55 原理段的 days vs weeks 论述有官方出处、不受影响。若未来有多模型环境想恢复此段：预跑并存档 `evidence/ep07/` 后再写回。）**
 
 **B 方案（录不到/结果不符合预期时）**：
 - promptfoo 的运行本身是确定性的工具行为，但 agent 输出是概率性的。若现场某条用例结果与实跑存档不一致（如某条现场翻红），不赌重跑：改用预跑存档的 eval 输出（`promptfoo eval --output results.json` 的事先存档 `evidence/ep07/ep07-eval-results.json` + `promptfoo view` 打开），画面配字幕"取自预跑结果存档"。脚本叙事口径以存档 6/6 全绿为准。
@@ -261,6 +261,6 @@ Cursor 和 Codex 用户几乎不用翻译：promptfoo 的 provider 换一行，�
 | 9 | 过期约束是纯成本（稀释指令、拖慢热路径） | 大纲第七期判据；佐证：arXiv 2602.11988（context files 推理成本 +20%）与 Thoughtworks "Agent instruction bloat"（Caution）——脚本未引用具体数字，仅作定性表述 | ⚠️ 开拍前复核：确认定性表述不与第二期对该论文的呈现冲突 |
 | 10 | 冒烟配置"第二期已随模板仓库下发" | 大纲配套资产节 | ✅ 课程内设定 |
 | 11 | Cursor `.cursor/hooks.json` 项目级 hooks 配置路径 | Cursor 官方 hooks 文档，调研报告 §2.2 | ✅ 一手 |
-| 12 | 演示中"换上一代模型 capability 通过率下降、regression 保持全绿" | 策展叙事，非事实声明；画面按制作纪律标注预跑存档 | ⚠️ 属演示编排，不构成外部事实声明 |
+| 12 | 演示中"换上一代模型 capability 通过率下降、regression 保持全绿" | 2026-08-16 决策：该段整段删除（存档证据不存在），不再出现在口播与画面中 | ✅ 已删除，不再构成任何声明 |
 | 13 | 演示实跑结果：6/6 全绿（regression 2/2 + capability 4/4，总耗时约 9 分钟） | `spike/captures/evidence/ep07/ep07-eval-results.json`（2026-08-07，eval-WUA，逐条 pass=true 已复核） | ✅ 一手（2026-08-16 复审修复：脚本原口径"爬坡组四个过两个 / 任务能力五成"与证据矛盾，口播、画面、Demo 步骤、B 方案已全部改为 6/6 全绿口径，"爬坡"形态不伪造失败） |
-| 14 | 换模型对比段所需的"上一代模型重跑存档" | 证据不存在：`evidence/ep07/` 仅含单模型一次实跑 | ⚠️ 证据不存在（2026-08-16 复审标注）：开拍前须用多模型环境预跑上一代模型并存档 results.json，画面配"取自预跑结果存档"；无存档则按 2026-08-07 决策整段剪掉 |
+| 14 | 换模型对比段所需的"上一代模型重跑存档" | 证据不存在：`evidence/ep07/` 仅含单模型一次实跑 | ✅ 已结案（2026-08-16）：对比段整段删除，不再需要该存档；未来若恢复此段须先预跑存档 results.json 再写回 |

@@ -49,7 +49,7 @@ export PATH="/home/peter/project/harness-training/spike/tools:$PATH"
 
 ## 第 4 期：权限与沙箱
 
-四条机制镜头均有存档录屏（`spike/captures/evidence/ep04/`，2026-08-09），可直接用存档；重拍按下面口径。布景 `spike/ep04-sandbox`（socat 已装系统级）——**开拍前先把布景 settings 换成交付物严格版**（当前布景 settings 缺严格模式开关，直接拍会穿帮）：
+四条机制镜头均有存档录屏（`spike/captures/evidence/ep04/`，2026-08-09），可直接用存档；重拍按下面口径。布景 `spike/ep04-sandbox`（socat 已装系统级）——布景 settings 已于 2026-08-16 换成交付物严格版（`allowUnsandboxedCommands: false` + `deniedDomains` + `denyRead`，提交 9cd8297）：
 
 ```json
 {
@@ -84,7 +84,7 @@ claude -p "在 src/ 里新增一个 greet.ts，导出 greet(name: string): strin
 
 ## 第 6 期：/goal
 
-- **机制揭秘（实录）**：`spike/ep06-goal` 里现场 `/goal <条件>`，展示状态条、评估器理由
+- **机制揭秘（实录）**：`spike/ep06-goal`（拍前 `git checkout -q -- . && git clean -fdq`）里现场 `/goal`，判据用脚本定版："`npm test` 全部通过，且 `tests/` 中存在 `score.boundary.test.js`，对 59/60/89/90 四个边界分的断言全部通过"；展示状态条、评估器理由
 - **松/死判据（策展，真实样本已采）**：`spike/captures/ep06-loose.stream.jsonl`（25 轮/$0.41 镀金蔓延）、`ep06-impossible.stream.jsonl`（7 分钟 27 轮强杀），字幕如实标轮数/耗时/成本，并标注采样范围（2026-08-07 单次实测，各一次完整运行）
 - 翻车段不实拍（与脚本决策一致）：用已采策展样本 `evidence/ep06-loose.cast` / `ep06-impossible.cast` 回放分屏，字幕标注"单次实测样本，策展呈现"；死判据不要现场跑（烧钱）
 
@@ -98,7 +98,7 @@ npx promptfoo view        # 结果表格：regression 2/2 + capability 4/4
 
 - 预期全绿（已实跑 6/6，9 分钟，等待段"已剪辑"；存档 `evidence/ep07/ep07-eval-results.json`，脚本口径已同步为"六条全绿"，2026-08-16）
 - 现场结果与存档不一致时不赌重跑：用预跑存档 + `promptfoo view` 打开，画面配字幕"取自预跑结果存档"
-- **换模型对比段已决策不拍**（单模型 relay）：`evidence/ep07/` 目前无上一代模型存档——要保留此段须先在多模型环境预跑并存 results.json 进证据目录（登记 MANIFEST），画面配"取自预跑结果存档"；否则整段剪掉（原理段 days vs weeks 论述不受影响）
+- **换模型对比段已整段删除**（2026-08-16 决策：上一代模型存档不存在，口播与画面均移除；原理段 days vs weeks 论述不受影响）。未来若恢复：先在多模型环境预跑并存 results.json 进 `evidence/ep07/`（登记 MANIFEST），再写回脚本
 - 可选加拍（更生动）：删 `protect-generated.sh` 再跑 → regression A 红 → 改回 → 全绿，正好演示"防倒退"；属真实拍，产生的红/绿两次结果建议一并存档 `evidence/ep07/`
 
 ## 第 8 期：组织设计
