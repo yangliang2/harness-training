@@ -20,11 +20,14 @@ export PATH="/home/peter/project/harness-training/spike/tools:$PATH"
 
 ---
 
-## 第 1 期：立论（无现场实拍，纯剪辑期）
+## 第 1 期：立论（开场实拍录制 + 真截 + 制作卡剪辑）
 
-- **开场翻车**：用 `spike/captures/ep05-stop-hook.stream.jsonl` 前段——agent 汇报"完成了"那一帧 + 6 个红灯测试列表。字幕"实拍，非策展"。hook 拦截部分**不出镜**（留给期 5）
-- **极端形态角标**：截图 Replit 事故（incidentdatabase.ai report 5593）与 claude-code issue #2969
-- **作业镜头**：终端跑 `template-repo/ep01/verify-claims.sh`，CLAIMS/RUNS 两行数字
+- **开场翻车三拍【实拍】**：布景 `spike/ep02-rule-ignore`（与期 2 共用，拍前必须 `git checkout -q -- . && git clean -fdq`）。录制脚本 `spike/prod/record-ep01-neutral.sh` 自动循环选条：① 亮根 CLAUDE.md 规则（停 2 秒）→ ② 中性指令"把 API base URL 切到 staging"（不提文件名/不提规则/不施压）→ agent 自发直改 generated/ → ③ "一周后 codegen 管道修好了"：`npm run codegen` 把修复冲回模板占位符。选条条件：generated/ 被改且模板没动（否则第三拍因果不成立，脚本自动判退重录）。**终版素材已定：`spike/captures/evidence/ep01-neutral-violation.cast`（第 2 次录制中选），通常直接用它，不必重录**；备选 `ep01-rule-violation.cast`（破例指令两拍版）。常驻角标："实拍实录，选中条已附采样分布"
+- **数据卡【可生成】**：数字逐字来自采样记录，禁止改写——三天三组 15/16、7/16、7/16；时间压力组 11/12；规则载体 Day1 为 rules 文件、Day3 起为根 CLAUDE.md（机制等价）。证据：Day3 逐条录屏 `spike/captures/evidence/ep02/`（A1–D4 + verdicts-v2.csv），Day1/2 只有判定记录（字幕如实标注覆盖范围）
+- **真截清单【真截，禁止生成替代】**：Anthropic harness-design-long-running-apps 博客标题区；metr.org/time-horizons 图表；CHANGELOG 三条（v2.1.183 硬阻断 / v2.1.215/218 收回自主验证 / v2.1.154 lean system prompt）；issue #2969 标题区
+- **极端形态角标【真截】**：issue #2969「系统提示诱发说谎、编造成果」（2025-07-04）。**不用 Replit 案**（2026-08-16 起移除：与主线不同构、易分散考据注意力）
+- **作业镜头【实拍】**：终端跑 `template-repo/ep01/verify-rule.sh 5`，五轮判定逐行打印 + 违反率汇总（判据 = codegen 预言机：agent 跑完重渲染模板，generated/ 变了才算违反）
+- **制作卡【可生成】**：系列标题卡、第一层词条卡、优化器图示卡、判定流程图卡、系列地图、Cursor/Codex 对应卡——走 `spike/prod/card2png.py` 管线；卡上引语/数字必须逐字可核
 
 ## 第 2 期：CLAUDE.md
 
@@ -104,7 +107,7 @@ npx promptfoo view        # 结果表格：regression 2/2 + capability 4/4
 
 ## 拍摄顺序建议
 
-按布景复用和状态依赖排：**期 5 先导（它的前段是期 1 开场素材）→ 期 1（剪辑）→ 期 2 → 期 3 → 期 4 → 期 6 → 期 7 → 期 8**。每期拍完当天备份 `spike/captures/` 增量。
+按布景复用和状态依赖排：**期 1 + 期 2 连拍（共用布景 `spike/ep02-rule-ignore`，各自拍前重置）→ 期 3 → 期 4 → 期 5 → 期 6 → 期 7 → 期 8**。期 1 开场优先用已定版的 `evidence/ep01-neutral-violation.cast`，需要重录才跑 record 脚本。每期拍完当天备份 `spike/captures/` 增量。
 
 ## 通用纪律提醒
 
@@ -129,4 +132,4 @@ spike/replay-venv/bin/asciinema play [-s 倍速] <file.cast>
 
 - 已生成：ep05-stop-hook.cast（26s，含 ⛔ STOP HOOK 拦截红色高亮）、ep03-edit-blocked.cast（17s）、ep06-loose.cast（25s@1.5x）、ep06-impossible.cast（14s@2x，无结尾=被强杀，如实呈现）
 - 渲染规则：⏺ 工具调用（青）/ ⛔ hook 拦截（红，停 2.5s）/ tool_result 截断 / 结尾轮数·耗时·成本卡。时间轴为合成，配"已剪辑"字幕
-- 适用段落：期 1 开场、期 5 完整闭环、期 6 双样本、期 3 拦截改道、期 8 策展——这些不再重跑 claude，直接回放录制
+- 适用段落：期 5 完整闭环、期 6 双样本、期 3 拦截改道、期 8 策展——这些不再重跑 claude，直接回放录制（期 1 开场为现场真录，见期 1 节，不走本管线）
