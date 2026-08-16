@@ -103,7 +103,7 @@ Claude Code 有个 Stop 事件：agent 每次想结束这一轮，都要经过�
 
 ## 交付物文件内容
 
-以下两个文件即模板仓库 `ep05/` 目录内容（2026-08-16 核查：`ep05/` 目前仅有 NOTES.md，实体文件待补，见事实核对清单 #14）。
+以下两个文件即模板仓库 `ep05/` 目录内容（2026-08-16 复核：实体文件在 `ep05/.claude/` 下——`settings.json` + `hooks/verify-done.sh`，git 已跟踪，与本文内嵌版一致）。
 
 ### `.claude/settings.json`（增量片段）
 
@@ -210,7 +210,7 @@ echo '{}' | bash .claude/hooks/verify-done.sh; echo "exit=$?"
 | 11 | 实录口径：任务指令为"新增 greet.ts"；宣布完成 → 拦截（6 个失败用例摘要塞回）→ 修 `src/utils.ts` 4 处 bug → 10/10 放行；15 轮 106 秒、成本 $0.294 | `evidence/ep05-stop-hook.cast` + MANIFEST ep05 节 | ✅ 一手（2026-08-16 逐条复核 cast，口播与拍摄流程已对齐；旧稿"calc.ts 埋一个失败测试""formatPrice 任务""两行输出"均与证据不符，已改） |
 | 12 | 三连拦 + 兜底放行（3 行 blocked round + 第 4 次 exit 0）为脱机判定记录（夹具 6 红基线下直调 hook），非逐条录屏 | `evidence/ep05-blocks-三连拦.log` | ✅ 一手，覆盖范围已在脚本如实标注 |
 | 13 | 第 1 期终版开场为"中性指令三拍"规则违反实拍，全片无"谎报完成"画面（谎报诱发 11 次全诚实，拍不到） | `scripts/ep01-立论.md` + MANIFEST ep01 采样史 | ✅ 2026-08-16 修复：开场口播与"前置"表述原称"第 1 期你见过谎报完成现场"，与第 1 期终版矛盾，已改为规则违反现场 + 自我验收论点 |
-| 14 | 交付物实体文件不在 `template-repo/ep05/`（仅 NOTES.md）；实际位于 `template-repo/ep07/fixtures/demo-repo/.claude/`，verify-done.sh 与脚本内嵌版 diff 逐字一致（`spike/ep05-live` 里的副本为旧版，缺审计日志两行，以脚本内嵌版为准）；内嵌版 `bash -n` 通过 | 2026-08-16 diff / bash -n 核查 | ⚠️ 待人决定：发布前把交付物复制进 `ep05/` 或改脚本指向；作业判定命令与外部判据（返回码 2/0）不依赖 agent 自我报告，已核实；配套注原指向 `template-repo/ep03/`（同样仅有 NOTES.md），已改指本期布景自带的 `protect-generated.sh` |
+| 14 | 交付物实体文件位置：`template-repo/ep05/.claude/`（`settings.json` + `hooks/verify-done.sh`，git 已跟踪，2026-08-16 复核确认存在；首轮复审误报"仅有 NOTES.md"系 ls 未显示隐藏目录所致，已更正）。verify-done.sh 与脚本内嵌版 diff 逐字一致（`spike/ep05-live` 里的副本为旧版，缺审计日志两行，以脚本内嵌版为准）；内嵌版 `bash -n` 通过 | 2026-08-16 diff / bash -n / git ls-files 核查 | ✅ 已核实；作业判定命令与外部判据（返回码 2/0）不依赖 agent 自我报告；配套注原指向 `template-repo/ep03/`（仅有 NOTES.md），已改指本期布景自带的 `protect-generated.sh` |
 | 15 | Playwright MCP 对比段无实拍证据，"成品在模板仓库"亦不成立（`template-repo/ep05/` 无相关文件） | 2026-08-16 核查 | ⚠️ 已降级：画面改为示意卡（须打"示意图"角标），口播删去"成品在模板仓库"；若要实拍需另行补录 |
 
 ## 写作中发现的大纲问题（如实记录）
