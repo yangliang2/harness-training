@@ -1,6 +1,6 @@
 # 《改掉这个习惯》课程工作台
 
-> 系列名：《改掉这个习惯》· AI 使用反模式八讲（每集 ≤5 分钟）
+> 系列名：《改掉这个习惯》· AI 使用反模式七讲（每集 ≤5 分钟）
 > 用法：讨论某一集 = 读本 README + 对应 epXX.md。每集设计档自包含（既定事实 / 待定问题 / 讨论记录）。
 > 工作流：逐集讨论 → 定一条改一条 → 状态翻"定稿" → commit。总大纲（背景）见 `antipattern-course-outline.md`；候选与出局记录见 `antipattern-candidates.md`。
 
@@ -14,8 +14,9 @@
 | 4 | 让 AI 一学就会 | 逆分布造轮子 | 待讨论 | research/out-of-distribution-tooling.md | spike/verify/ep04-gh-vs-mcp/ + ep04-multi-mcp/ |
 | 5 | 让 AI 下午不变笨 | 长会话当仓库 | 待讨论 | research/compact-loss-handoff-statusline.md | spike/verify/ep05-compact/ |
 | 6 | 让 AI 不走神 | 一个会话炒三盘菜 | 待讨论 | research/context-pollution-session-branching.md | spike/verify/ep06-ep07/（btw-test） |
-| 7 | 让 AI 少浪费钱 | 僵尸会话复活 | 待讨论 | research/llm-cache-strategies.md + zombie-session-revival-awareness.md | spike/verify/ep06-ep07/（cache-test） |
-| 8 | 让 AI 说到做到 | 空头支票 | 待讨论 | research/ai-fake-done-verification-awareness.md | spike/verify/ep08-hooks-e2e/ + spike/anti-status-smuggle/ |
+| 7 | 让 AI 说到做到 | 空头支票（压轴） | 待讨论 | research/ai-fake-done-verification-awareness.md | spike/verify/ep08-hooks-e2e/ + spike/anti-status-smuggle/ |
+
+> 2026-08-21 决议：原第 7 集"僵尸会话复活"整集出局，课程定版七讲、不补位；耐久结论并入第 5 集收尾，完整决策链与资产处置见 `../antipattern-candidates.md` #18。原第 8 集（空头支票）顺延为第 7 集。
 
 ## 每集设计档模板（四区）
 
