@@ -9,7 +9,7 @@
 | 集 | 集名 | 反模式 | 状态 | 调研报告 | 实测证据 |
 |---|---|---|---|---|---|
 | 1 | 让 AI 立刻变聪明 | 配置只加不减 | 定稿（2026-08-21） | research/mcp-context-tax-tool-search-doctor.md + research/skills-overload-evidence.md | spike/verify/ep01-mcp-tax/ |
-| 2 | 让 AI 听得清 | 工具输出无节制 | 待讨论 | research/tool-output-industry-consensus.md | spike/verify/ep02-tool-output/ + ep02-truncation/ |
+| 2 | 让 AI 听得清 | 工具输出无节制 | 定稿（2026-08-21） | research/tool-output-industry-consensus.md + research/tool-output-failure-design-scan.md | spike/verify/ep02-tool-output/ + ep02-truncation/ + ep02-mcp-extract/ |
 | 3 | 让 AI 不记错事 | 文档坟场 | 待讨论 | research/doc-graveyard-industry-scan.md | spike/verify/ep03-doc-graveyard/ |
 | 4 | 让 AI 一学就会 | 逆分布造轮子 | 待讨论 | research/out-of-distribution-tooling.md | spike/verify/ep04-gh-vs-mcp/ + ep04-multi-mcp/ |
 | 5 | 让 AI 下午不变笨 | 长会话当仓库 | 待讨论 | research/compact-loss-handoff-statusline.md | spike/verify/ep05-compact/ |
