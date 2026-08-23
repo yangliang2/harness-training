@@ -8,7 +8,7 @@
 
 | 集 | 集名 | 反模式 | 状态 | 调研报告 | 实测证据 |
 |---|---|---|---|---|---|
-| 1 | 让 AI 立刻变聪明 | 配置只加不减 | 定稿（2026-08-21） | research/mcp-context-tax-tool-search-doctor.md + research/skills-overload-evidence.md | spike/verify/ep01-mcp-tax/ |
+| 1 | 让 AI 立刻变聪明 | 配置只加不减 | 定稿（2026-08-21） | research/mcp-context-tax-tool-search-doctor.md + research/skills-overload-evidence.md + research/cursor-config-parity.md | spike/verify/ep01-mcp-tax/ |
 | 2 | 让 AI 听得清 | 工具输出无节制 | 定稿（2026-08-21） | research/tool-output-industry-consensus.md + research/tool-output-failure-design-scan.md | spike/verify/ep02-tool-output/ + ep02-truncation/ + ep02-mcp-extract/ |
 | 3 | 让 AI 不记错事 | 文档坟场 | 四轮 spike 29/29 未中毒（v4 ANR 陷阱 5/5 全解），待裁决：夹具 v2 再压 or 反转叙事（2026-08-22） | research/doc-graveyard-industry-scan.md | spike/verify/ep03-doc-graveyard/ + ep03-experience-docs/ + ep03-anr-cases/ |
 | 4 | 让 AI 一学就会 | 逆分布造轮子 | 待讨论 | research/out-of-distribution-tooling.md | spike/verify/ep04-gh-vs-mcp/ + ep04-multi-mcp/ |

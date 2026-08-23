@@ -34,7 +34,7 @@
 - **翻车/对照**：同一任务，挂 15 个 MCP server vs 只留 3 个，`/context` 占用对比。
 - **干货**：跑 `/doctor`（已核实官方功能：闲置 vs 上下文成本体检 + CLAUDE.md 修剪，需 v2.1.206+）；判据"上周零次使用就删"；口诀"它自己能从代码推出来的，不用你写"。
 - **诚实边界**：/doctor 的 keep/remove 是建议不是圣旨——Uses 计数窗口薄（实跑仅 1 天）、token 为估算非实测，删前自己 `/context` 复核。（Tool Search 段 2026-08-20 砍出正片。）
-- **交付物**：环境体检清单。
+- **交付物**：环境体检清单（含 Cursor 对应栏，2026-08-23 决议：主案例维持 Claude Code，Cursor 走真截插卡+对应栏，见 `antipattern-course/ep01.md` 讨论记录与 `research/cursor-config-parity.md`）。
 - **待实测**：本机装 N 个 server 的 `/context` 占用；Tool Search 是否触发；`/doctor` 全流程实录（修剪建议为模型生成，按"配置面实录、建议走策展"）。
 
 ## 第 2 集：改掉这个习惯，让 AI 听得清（工具输出无节制）
