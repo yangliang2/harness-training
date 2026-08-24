@@ -10,13 +10,14 @@
 |---|---|---|---|---|---|
 | 1 | 让 AI 立刻变聪明 | 配置只加不减 | 定稿（2026-08-21） | research/mcp-context-tax-tool-search-doctor.md + research/skills-overload-evidence.md + research/cursor-config-parity.md | spike/verify/ep01-mcp-tax/ |
 | 2 | 让 AI 听得清 | 工具输出无节制 | 定稿（2026-08-21） | research/tool-output-industry-consensus.md + research/tool-output-failure-design-scan.md + research/mcp-output-tax-industry-evidence.md | spike/verify/ep02-tool-output/ + ep02-truncation/ + ep02-mcp-extract/ |
-| 3 | 让 AI 不记错事 | 参考文档只加不理（堆料） | 方向定稿（2026-08-23，语料税反转 + 三道门 + 多级索引；v2 索引税 A/B 为唯一 blocking） | research/doc-graveyard-industry-scan.md + research/repo-doc-hoarding-impact.md | spike/verify/ep03-doc-graveyard/ + ep03-experience-docs/ + ep03-anr-cases/ |
-| 4 | 让 AI 一学就会 | 逆分布造轮子 | 待讨论 | research/out-of-distribution-tooling.md | spike/verify/ep04-gh-vs-mcp/ + ep04-multi-mcp/ |
+| 3 | 让 AI 一学就会 | 无脑自建 MCP（工具=MCP 条件反射） | 方向定稿（2026-08-23，docs as code 主案例 + 判税三问；逻辑稿 v1 过审；KB spike 三臂为唯一 blocking） | research/out-of-distribution-tooling.md + research/docs-as-code-vs-kb-mcp.md | spike/verify/ep04-gh-vs-mcp/ + ep04-multi-mcp/（历史编号，属本集） |
+| 4 | 让 AI 不记错事 | 参考文档只加不理（堆料） | 方向定稿（2026-08-23，语料税反转 + 三道门 + 多级索引；v2 索引税 A/B 为唯一 blocking） | research/doc-graveyard-industry-scan.md + research/repo-doc-hoarding-impact.md | spike/verify/ep03-doc-graveyard/ + ep03-experience-docs/ + ep03-anr-cases/（历史编号，属本集） |
 | 5 | 让 AI 下午不变笨 | 长会话当仓库 | 待讨论 | research/compact-loss-handoff-statusline.md | spike/verify/ep05-compact/ |
 | 6 | 让 AI 不走神 | 一个会话炒三盘菜 | 待讨论 | research/context-pollution-session-branching.md | spike/verify/ep06-ep07/（btw-test） |
 | 7 | 让 AI 说到做到 | 空头支票（压轴） | 待讨论 | research/ai-fake-done-verification-awareness.md | spike/verify/ep08-hooks-e2e/ + spike/anti-status-smuggle/ |
 
 > 2026-08-21 决议：原第 7 集"僵尸会话复活"整集出局，课程定版七讲、不补位；耐久结论并入第 5 集收尾，完整决策链与资产处置见 `../antipattern-candidates.md` #18。原第 8 集（空头支票）顺延为第 7 集。
+> 2026-08-23 决议：第 3、4 集互换（工具集前置，成"挂什么→治别人的→别自己造坏的"三部曲；文档集后置接会话篇）。**spike 与交付物目录一律沿用历史集号不改名**（ep03-* 属现第 4 集、ep04-* 属现第 3 集），映射见各集设计档头部。
 
 ## 每集设计档模板（四区）
 
